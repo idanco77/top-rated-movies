@@ -1,0 +1,28 @@
+<div class="jumbotron py-3">
+  <h3 class="display-4 text-center">
+    <i class="fas fa-film"></i>
+    Top Rated Movies</h3>
+</div>
+
+<div
+  *ngIf="topFivePages.length > 0; else noMovies"
+  infinite-scroll
+  (scrolled)="onScrollDown()"
+  [infiniteScrollDistance]="0"
+  class="row justify-content-center infinite"
+>
+  <a
+    *ngFor="let movie of topRatedMovies"
+    href=""
+    routerLink="/movies/{{movie.id}}"
+    class="cell d-block col-lg-2 col-md-3 col-sm-4 mr-3 mt-3"
+    [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movie.poster_path)"
+  >
+    <div class="title text-light text-center">{{movie.title}}</div>
+  </a>
+</div>
+
+
+<ng-template #noMovies>
+  <p><i>No movies available. Wait a moment or try again later</i></p>
+</ng-template>

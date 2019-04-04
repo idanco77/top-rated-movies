@@ -1,0 +1,9 @@
+nav.navbar {
+  background-color: #ecf4f2;
+}
+
+a.nav-link, .navbar-brand, .navbar-toggler {
+  color: #434343 !important;
+}
+
+
