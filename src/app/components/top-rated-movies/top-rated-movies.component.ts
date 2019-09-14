@@ -9,9 +9,9 @@ import {TopRatedMoviesService} from '../../services/top-rated-movies.service';
   styleUrls: ['./top-rated-movies.component.css']
 })
 export class TopRatedMoviesComponent implements OnInit {
-  topFivePages: Array<any> = [];
   pageNum: number;
-  topRatedMovies: Array<any> = [];
+  moviesArray: Array<any> = [];
+  setSpinner = false;
 
   constructor(
     private _titleService: Title,
@@ -31,17 +31,21 @@ export class TopRatedMoviesComponent implements OnInit {
   }
 
   onScrollDown() {
-    this._topMoviesService.getPopularMovies(this.pageNum)
-      .subscribe(data => {
-        if (this.topFivePages.length <= 4) {
-          this.topFivePages.push(data);
-          this.topRatedMovies = [];
-          for (const page of this.topFivePages) {
-            this.topRatedMovies = this.topRatedMovies.concat(page.results);
+    if (this.pageNum <= 5) {
+      this.setSpinner = true;
+    }
+    setTimeout(() => {
+      this._topMoviesService.getPopularMovies(this.pageNum)
+        .subscribe(movies => {
+          if (this.pageNum <= 5) {
+            for (const movie of movies['results']) {
+              this.moviesArray.push(movie);
+            }
           }
-        }
-      });
-    this.pageNum++;
+          this.pageNum++;
+          this.setSpinner = false;
+        });
+    }, 2000);
   }
 
 }

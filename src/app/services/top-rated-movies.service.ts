@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {timeout} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,12 @@ export class TopRatedMoviesService {
   constructor(private _http: HttpClient) {
   }
 
-  getPopularMovies(page = 1) {
-    return this._http.jsonp(this.movieUrl + 'discover/movie/?page=' + page + '&sort_by=popularity.desc&api_key=' + this.apiKey + '&' + this.jsonpCallback, 'jsonpCallback');
+  getPopularMovies(page) {
+    const sortBy = '&sort_by=popularity.desc&api_key=';
+    const popularMoviesUrl = 'https://api.themoviedb.org/3/discover/movie/?page=';
+    return this._http.jsonp(
+      popularMoviesUrl + page + sortBy + this.apiKey + '&' + this.jsonpCallback,
+      'jsonpCallback');
   }
 
   getMovie(id) {

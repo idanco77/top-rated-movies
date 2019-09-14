@@ -35,14 +35,15 @@ export class MovieDetailsComponent implements OnInit {
 
     this._topMoviesService.getMovie(this.id)
       .subscribe(data => this.movieDetail = data);
+
     this._titleService.setTitle('Movie details');
 
     this._topMoviesService.getRelatedMovies(this.id)
       .subscribe(data => {
-        this.relatedMovies = data;
+        this.relatedMovies = data['results'];
+        console.log(this.relatedMovies);
       });
   }
-
 
 
 }

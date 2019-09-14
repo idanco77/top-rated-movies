@@ -2,40 +2,30 @@
   <h3 class="display-4 text-center"><i class="fas fa-film"></i> Movie Details</h3>
 </div>
 
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-5" *ngIf="movieDetail">
   <div class="d-none d-md-block detail-box col-3"
-       [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movieDetail.poster_path)"
+       [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movieDetail['poster_path'])"
   >
   </div>
   <div class="detail-box col-md-9"
-       [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movieDetail.backdrop_path)"
-  >
+       [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movieDetail['backdrop_path'])">
 
-    <div class="inner-div text-light py-5">
-      <h2 class="text-center pt-4">{{movieDetail.title}}<span
-        *ngIf="movieDetail.title != movieDetail.original_title">
-      / {{movieDetail.original_title}}</span>
+    <div class="inner-div text-light py-5" *ngIf="movieDetail">
+      <h2 class="text-center pt-4">{{movieDetail.title}}
+        <span *ngIf="movieDetail.title !== movieDetail['original_title']">/ {{movieDetail['original_title']}}</span>
       </h2>
-      <p class="lead px-4 pt-3">{{movieDetail.overview}}</p>
-      <p class="pt-3 px-4 h5">Rating: {{movieDetail.vote_average}}</p>
+      <p class="lead px-4 pt-3">{{movieDetail['overview']}}</p>
+      <p class="pt-3 px-4 h5">Rating: {{movieDetail['vote_average']}}</p>
 
     </div>
 
   </div>
 </div>
 <h3 class="text-center mt-5">Related Movies</h3>
-<div
-  *ngIf="relatedMovies"
-  class="row justify-content-center"
->
-
-  <a
-    class="cell d-block col-lg-2 col-md-3 col-sm-4 mr-4 mt-3"
-    href=""
-    routerLink="/movies/{{relatedMovie.value.id}}"
-    [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + relatedMovie.value.poster_path)"
-    *ngFor="let relatedMovie of relatedMovies.results | keyvalue | slice:0:5"
-  >
-    <div class="title text-light text-center">{{relatedMovie.value.title}}</div>
+<div *ngIf="relatedMovies" class="row justify-content-center">
+  <a class="cell d-block col-lg-2 col-md-3 col-sm-4 mr-4 mt-3" [routerLink]="['/movies', relatedMovie['id']]"
+     [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + relatedMovie['poster_path'])"
+     *ngFor="let relatedMovie of relatedMovies | slice:0:5">
+    <div class="title text-light text-center">{{relatedMovie['title']}}</div>
   </a>
 </div>
