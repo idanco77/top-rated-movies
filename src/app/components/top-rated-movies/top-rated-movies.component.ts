@@ -19,6 +19,7 @@ export class TopRatedMoviesComponent implements OnInit {
     private titleService: Title, private topMoviesService: TopRatedMoviesService,
     private sanitizer: DomSanitizer
   ) {
+    this.pageNum = 1;
   }
 
   getBackground(image) {
@@ -27,7 +28,6 @@ export class TopRatedMoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pageNum = 1;
     this.titleService.setTitle('Top Rated Movies');
     this.onScrollDown();
   }

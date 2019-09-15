@@ -1,7 +1,7 @@
 <div class="jumbotron py-3">
   <h3 class="display-4 text-center">
     <i class="fas fa-film"></i> Top Rated Movies</h3>
-  <small class="pl-3">**as rated by TMDB</small>
+  <small class="pl-3">** as rated by TMDB</small>
 </div>
 <div *ngIf="moviesArray.length > 0" infinite-scroll (scrolled)="onScrollDown()"
      infiniteScrollThrottle="700" class="row justify-content-center infinite">
