@@ -12,36 +12,26 @@ import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser'
 export class MovieDetailsComponent implements OnInit {
 
   movieDetail: any;
-  id: string;
+  id: number;
   relatedMovies: any;
 
-  constructor(
-    private _titleService: Title,
-    private _topMoviesService: TopRatedMoviesService,
-    private _activatedRoute: ActivatedRoute,
-    private _router: Router,
-    private _sanitizer: DomSanitizer
+  constructor(private titleService: Title, private topMoviesService: TopRatedMoviesService,
+              private activatedRoute: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer
   ) {
-
   }
 
   getBackground(image) {
-    return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+    return this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
   }
 
   ngOnInit() {
-
-    this.id = this._activatedRoute.snapshot.params['id'];
-
-    this._topMoviesService.getMovie(this.id)
+    this.titleService.setTitle('Movie details');
+    this.id = +this.activatedRoute.snapshot.params['id'];
+    this.topMoviesService.getMovie(this.id)
       .subscribe(data => this.movieDetail = data);
-
-    this._titleService.setTitle('Movie details');
-
-    this._topMoviesService.getRelatedMovies(this.id)
+    this.topMoviesService.getRelatedMovies(this.id)
       .subscribe(data => {
         this.relatedMovies = data['results'];
-        console.log(this.relatedMovies);
       });
   }
 

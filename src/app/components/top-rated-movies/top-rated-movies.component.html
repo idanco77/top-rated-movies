@@ -1,9 +1,11 @@
 <div class="jumbotron py-3">
-  <h3 class="display-4 text-center"> <i class="fas fa-film"></i> Top Rated Movies</h3>
+  <h3 class="display-4 text-center">
+    <i class="fas fa-film"></i> Top Rated Movies</h3>
+  <small class="pl-3">**as rated by TMDB</small>
 </div>
 <div *ngIf="moviesArray.length > 0" infinite-scroll (scrolled)="onScrollDown()"
-     infiniteScrollThrottle="500" class="row justify-content-center infinite">
-  <a *ngFor="let movie of moviesArray; let i = index" routerLink="/movies/{{movie.id}}"
+     infiniteScrollThrottle="700" class="row justify-content-center infinite">
+  <a *ngFor="let movie of moviesArray; let i = index" [routerLink]="['/movies', movie.id]"
      class="cell d-block col-lg-2 col-md-3 col-sm-4 mr-3 mt-3"
      [style.background-image]="getBackground('https://image.tmdb.org/t/p/w500/' + movie.poster_path)">
     <div class="title text-light text-center">{{movie.title}}</div>

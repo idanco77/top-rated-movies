@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-  <a class="navbar-brand" routerLink="/"><i class="fas fa-video"></i></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
           aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
@@ -8,24 +7,12 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/top-rated-movies">Top Rated Movies</a>
+        <a class="nav-link" [routerLink]="['/top-rated-movies']">
+          <i class="fas fa-video"></i> Top Rated Movies
+        </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link">Coming soon</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">In theaters</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Trailers</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <a class="nav-link"> <i class="fab fa-facebook-square fa-2x"></i></a>
-      <a class="nav-link"><i class="fab fa-twitter-square fa-2x"></i></a>
     </ul>
   </div>
-
 </nav>
 <div class="mt-5" style="height: 20px"></div>
 
