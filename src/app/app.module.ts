@@ -11,6 +11,7 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import {TopRatedMoviesService} from './services/top-rated-movies.service';
 import {MovieDetailsComponent} from './components/movie-details/movie-details.component';
 import {FooterComponent} from './components/footer/footer.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FooterComponent} from './components/footer/footer.component';
     TopRatedMoviesComponent,
     PageNotFoundComponent,
     MovieDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

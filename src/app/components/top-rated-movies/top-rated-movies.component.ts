@@ -12,7 +12,7 @@ import {MovieModel, MoviesModel} from '../../movies.model';
 })
 export class TopRatedMoviesComponent implements OnInit {
   moviesArray: MovieModel[] = [];
-  setSpinner = false;
+  isLoading = false;
   pageNum: number;
 
   constructor(
@@ -34,7 +34,7 @@ export class TopRatedMoviesComponent implements OnInit {
 
   onScrollDown() {
     if (this.pageNum <= 5) {
-      this.setSpinner = true;
+      this.isLoading = true;
     }
     setTimeout(() => {
       this.topMoviesService.getPopularMovies(this.pageNum)
@@ -45,7 +45,7 @@ export class TopRatedMoviesComponent implements OnInit {
             }
           }
           this.pageNum++;
-          this.setSpinner = false;
+          this.isLoading = false;
         });
     }, 1000);
   }
